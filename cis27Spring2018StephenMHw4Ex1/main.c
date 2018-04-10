@@ -54,6 +54,10 @@ int main(int argc, const char * argv[]) {
     
     printListStephenM(ptList);
     
+    mergeSortedListStephenM(&ptList);
+    
+    printListStephenM(ptList);
+    
     free(ptList);
     ptList = NULL;
 

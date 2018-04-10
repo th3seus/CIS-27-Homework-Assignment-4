@@ -16,11 +16,13 @@
 
 /* function prototypes */
 
-void displayClassInfoStephen(void);
+void displayClassInfoStephenM(void);
 void runMainMenuStephenM(void);
 void displayMainMenuOptionsStephenM(void);
 
-void runDisplayMenuStephenM(PolyTermNodeSMAddrT, PolyTermNodeSMAddrT, PolyTermNodeSMAddrT);
+void runDisplayMenuStephenM(PolyTermNodeSMAddrT /* leftOp */,
+                            PolyTermNodeSMAddrT /* rightOp */,
+                            PolyTermNodeSMAddrT /* totalOp */);
 void displayDisplayMenuOptionsStephenM(void);
 
 void runCreateListsMenuStephenM(PolyTermNodeSMAddrT* /* address of rightOp */,
