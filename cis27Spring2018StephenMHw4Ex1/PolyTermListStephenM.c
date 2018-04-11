@@ -67,6 +67,7 @@ void bisectListsStephenM(PolyTermNodeSMPtrT ptList,
     slow->next = NULL;
 }
 
+
 /* Other Utility Functions */
 
 void printListStephenM(PolyTermNodeSMAddrT ptList) {
