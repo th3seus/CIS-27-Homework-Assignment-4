@@ -15,6 +15,7 @@ PolyTermSMPtrT createPolyTermStephen(int exp, FractionSMPtrT coef) {
     PolyTermSMPtrT tempTerm = NULL;
     
     tempTerm = (PolyTermSMPtrT)malloc(sizeof(PolyTermSMT));
+    tempTerm->coefPtr = (FractionSMPtrT)malloc(sizeof(FractionSMT));
     
     tempTerm->exp = exp;
     tempTerm->coefPtr = coef;
@@ -27,6 +28,7 @@ void createPolyTermNodeStephenM(PolyTermSMAddrT newNode, PolyTermNodeSMAddrT* pt
     PolyTermNodeSMPtrT tempNode = NULL;
     
     tempNode = (PolyTermNodeSMPtrT)malloc(sizeof(PolyTermNodeSMT));
+    tempNode->ptPtr = (PolyTermSMPtrT)malloc(sizeof(PolyTermSMT));
     
     if (*ptList == NULL) {
         tempNode->ptPtr = newNode;
@@ -41,6 +43,93 @@ void createPolyTermNodeStephenM(PolyTermSMAddrT newNode, PolyTermNodeSMAddrT* pt
     tempNode->next = *ptList;
     
     *ptList = tempNode;
+}
+
+void addListsStephenM(PolyTermNodeSMPtrT leftOp,
+                      PolyTermNodeSMPtrT rightOp,
+                      PolyTermNodeSMAddrT* total) {
+
+    appendNodeStephenM(leftOp, total);
+    
+    appendNodeStephenM(rightOp, total);
+
+    mergeSortedListStephenM(total);
+    combineLikeTermsStephenM(total);
+    printListStephenM(*total);
+}
+
+void multiplyListsStephenM(PolyTermNodeSMPtrT leftOp,
+                           PolyTermNodeSMPtrT rightOp,
+                           PolyTermNodeSMAddrT* total) {
+    PolyTermNodeSMPtrT tempNode = NULL;
+    PolyTermNodeSMPtrT rightHead = NULL;
+    FractionSMPtrT tempFrac = NULL;
+    int tempExp = 0;
+    
+    rightHead = rightOp;
+    if (*total != NULL) {
+        *total = NULL;
+    }
+    
+    
+    while (leftOp) {
+        while (rightOp) {
+            tempFrac = multiplyFractions(leftOp->ptPtr->coefPtr, rightOp->ptPtr->coefPtr);
+            tempExp = leftOp->ptPtr->exp + rightOp->ptPtr->exp;
+            
+            createPolyTermNodeStephenM(createPolyTermStephen(tempExp, tempFrac), total);
+            
+            rightOp = rightOp->next;
+        }
+        leftOp = leftOp->next;
+        rightOp = rightHead;
+    }
+    
+    mergeSortedListStephenM(total);
+    printListStephenM(*total);
+    
+    combineLikeTermsStephenM(total);
+}
+
+void combineLikeTermsStephenM(PolyTermNodeSMAddrT* listAddr) {
+    PolyTermNodeSMPtrT temp = NULL;
+    PolyTermNodeSMPtrT current = NULL;
+    
+    if (*listAddr == NULL || (*listAddr)->next == NULL) {
+        return;
+    }
+    
+    current = *listAddr;
+    
+    while (current && current->next) {
+        if (current->ptPtr->exp == current->next->ptPtr->exp) {
+            current->ptPtr->coefPtr = addFractions(current->ptPtr->coefPtr,
+                                              current->next->ptPtr->coefPtr);
+            temp = current->next;
+            current->next = current->next->next;
+            temp->next = NULL;
+            free(temp);
+            temp = NULL;
+        } else {
+            current = current->next;
+        }
+    }
+}
+
+void appendNodeStephenM(PolyTermNodeSMPtrT node, PolyTermNodeSMAddrT* list) {
+    PolyTermNodeSMPtrT tempNode = NULL;
+    
+    if (*list) {
+        tempNode = *list;
+        while (tempNode->next != NULL) {
+            tempNode = tempNode->next;
+        }
+    } else {
+        *list = node;
+        return;
+    }
+    
+    tempNode->next = node;
 }
 
 /* Merge Sort Function Definitions

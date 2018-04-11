@@ -36,15 +36,14 @@ typedef PolyTermNodeSMT* PolyTermNodeSMAddrT;
 PolyTermSMPtrT createPolyTermStephen(int, FractionSMPtrT);
 void createPolyTermNodeStephenM(PolyTermSMAddrT, PolyTermNodeSMAddrT*);
 
-void addListsStephenM(
+void addListsStephenM(PolyTermNodeSMPtrT /* ptr to leftOp */,
                      PolyTermNodeSMPtrT /* ptr to rightOp */,
-                     PolyTermNodeSMPtrT /* ptr to leftOp */,
                      PolyTermNodeSMAddrT* /* address of totalOp */);
-void multiplyListsStephenM(
+void multiplyListsStephenM(PolyTermNodeSMPtrT /* ptr to leftOp */,
                           PolyTermNodeSMPtrT /* ptr to rightOp */,
-                          PolyTermNodeSMPtrT /* ptr to leftOp */,
                           PolyTermNodeSMAddrT* /* address of totalOp */);
 
+void appendNodeStephenM(PolyTermNodeSMPtrT, PolyTermNodeSMAddrT*);
 void printListStephenM(PolyTermNodeSMAddrT);
 void mergeSortedListStephenM(PolyTermNodeSMAddrT*);
 void bisectListsStephenM(PolyTermNodeSMPtrT, PolyTermNodeSMAddrT*, PolyTermNodeSMAddrT*);

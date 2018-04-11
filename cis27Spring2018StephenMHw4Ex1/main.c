@@ -44,22 +44,42 @@ int main(int argc, const char * argv[]) {
     free(rightOp);
     rightOp = NULL;*/
     
-    PolyTermNodeSMAddrT ptList = NULL;
+    PolyTermNodeSMAddrT left = NULL;
+    PolyTermNodeSMAddrT right = NULL;
+    PolyTermNodeSMAddrT total = NULL;
     
-    createPolyTermNodeStephenM(createPolyTermStephen(1, createFractionStephenM(2, 3)), &ptList);
-    createPolyTermNodeStephenM(createPolyTermStephen(5, createFractionStephenM(-9, 73)), &ptList);
-    createPolyTermNodeStephenM(createPolyTermStephen(10, createFractionStephenM(12, 31)), &ptList);
-    createPolyTermNodeStephenM(createPolyTermStephen(2, createFractionStephenM(22, 3)), &ptList);
+    createPolyTermNodeStephenM(createPolyTermStephen(2, createFractionStephenM(1, 1)), &left);
+    createPolyTermNodeStephenM(createPolyTermStephen(1, createFractionStephenM(5, 1)), &left);
+    createPolyTermNodeStephenM(createPolyTermStephen(0, createFractionStephenM(1, 1)), &left);
+ 
+    createPolyTermNodeStephenM(createPolyTermStephen(2, createFractionStephenM(3, 1)), &right);
+    createPolyTermNodeStephenM(createPolyTermStephen(1, createFractionStephenM(-10, 1)), &right);
+    createPolyTermNodeStephenM(createPolyTermStephen(0, createFractionStephenM(15, 1)), &right);
     
+    mergeSortedListStephenM(&left);
+    mergeSortedListStephenM(&right);
     
-    printListStephenM(ptList);
+    printf("\nBefore operation: ");
+    printListStephenM(left);
+    printListStephenM(right);
     
-    mergeSortedListStephenM(&ptList);
+    addListsStephenM(left, right, &total);
     
-    printListStephenM(ptList);
+    printf("\nAfter operations: ");
+    printListStephenM(left);
+    printListStephenM(right);
+    printListStephenM(total);
     
-    free(ptList);
-    ptList = NULL;
+    //multiplyListsStephenM(left, right, &total);
+    
+    //printListStephenM(total);
+    
+
+    free(left);
+    left = NULL;
+    free(right);
+    right = NULL;
+
 
     return 0;
 }

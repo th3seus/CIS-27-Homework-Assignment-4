@@ -26,6 +26,6 @@ void runMainMenuStephenM(void) {
     /* displayMainMenuOptionsStephenM(); */
     do {
         
-    } while(menuOption != )
+    } while(menuOption != 6);
     
 }
