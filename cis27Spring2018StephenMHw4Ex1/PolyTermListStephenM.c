@@ -28,16 +28,69 @@ void createPolyTermNodeStephenM(PolyTermSMAddrT newNode, PolyTermNodeSMAddrT* pt
     
     tempNode = (PolyTermNodeSMPtrT)malloc(sizeof(PolyTermNodeSMT));
     
+    if (*ptList == NULL) {
+        tempNode->ptPtr = newNode;
+        tempNode->next = NULL;
+        
+        *ptList = tempNode;
+        
+        return;
+    }
+    
     tempNode->ptPtr = newNode;
     tempNode->next = *ptList;
     
     *ptList = tempNode;
 }
 
-/* Merge Sort Function Definitions */
+/* Merge Sort Function Definitions
+    Sorts in Descending Order */
 
-void mergeSortListStephenM(PolyTermNodeSMAddrT* ptListAddr) {
+void mergeSortedListStephenM(PolyTermNodeSMAddrT* ptListAddr) {
+    /* Main Merge Sort Function
+     splits list, sorts it, then merges sorted halves */
+    PolyTermNodeSMPtrT left = NULL;
+    PolyTermNodeSMPtrT right = NULL;
     
+    /* Base Case Test - Return if 0 or 1 nodes */
+    if (*ptListAddr == NULL || (*ptListAddr)->next == NULL) {
+        return;
+    }
+    
+    /* Split the list */
+    bisectListsStephenM(*ptListAddr, &left, &right);
+    
+    /* Recursively Sort list halves */
+    mergeSortedListStephenM(&left);
+    mergeSortedListStephenM(&right);
+    
+    /* Merge left and right halves of list */
+    *ptListAddr = mergeSortStephenM(&left, &right);
+}
+
+PolyTermNodeSMPtrT mergeSortStephenM(PolyTermNodeSMAddrT* left,PolyTermNodeSMAddrT* right) {
+    /* Secondary Merge Sort Function
+     Recursively sorts list halves and merges them */
+    PolyTermNodeSMPtrT result = NULL;
+    
+    /* Base Case Tests */
+    if (*left == NULL) {
+        return *right;
+    }
+    if (*right == NULL) {
+        return *left;
+    }
+    
+    /* Recursively sort lists  and then merge */
+    if ((*left)->ptPtr->exp > (*right)->ptPtr->exp) {
+        result = *left;
+        result->next = mergeSortStephenM(&(*left)->next, right);
+    } else {
+        result = *right;
+        result->next = mergeSortStephenM(left, &(*right)->next);
+    }
+    
+    return result;
 }
 
 void bisectListsStephenM(PolyTermNodeSMPtrT ptList,

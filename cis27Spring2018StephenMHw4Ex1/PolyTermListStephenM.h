@@ -46,8 +46,9 @@ void multiplyListsStephenM(
                           PolyTermNodeSMAddrT* /* address of totalOp */);
 
 void printListStephenM(PolyTermNodeSMAddrT);
-void mergeSortListStephenM(PolyTermNodeSMAddrT*);
+void mergeSortedListStephenM(PolyTermNodeSMAddrT*);
 void bisectListsStephenM(PolyTermNodeSMPtrT, PolyTermNodeSMAddrT*, PolyTermNodeSMAddrT*);
+PolyTermNodeSMPtrT mergeSortStephenM(PolyTermNodeSMAddrT* left,PolyTermNodeSMAddrT* right);
 void combineLikeTermsStephenM(PolyTermNodeSMAddrT*);
 void freeListStephen(PolyTermNodeSMAddrT*);
 int getLengthStephenM(PolyTermNodeSMAddrT);
