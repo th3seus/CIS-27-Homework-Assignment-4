@@ -69,13 +69,11 @@ void addListsStephenM(PolyTermNodeSMPtrT leftOp,
 
     mergeSortedListStephenM(total);
     combineLikeTermsStephenM(total);
-    printListStephenM(*total);
 }
 
 void multiplyListsStephenM(PolyTermNodeSMPtrT leftOp,
                            PolyTermNodeSMPtrT rightOp,
                            PolyTermNodeSMAddrT* total) {
-    PolyTermNodeSMPtrT tempNode = NULL;
     PolyTermNodeSMPtrT rightHead = NULL;
     FractionSMPtrT tempFrac = NULL;
     int tempExp = 0;
@@ -100,8 +98,6 @@ void multiplyListsStephenM(PolyTermNodeSMPtrT leftOp,
     }
     
     mergeSortedListStephenM(total);
-    printListStephenM(*total);
-    
     combineLikeTermsStephenM(total);
 }
 
@@ -236,11 +232,11 @@ void printListStephenM(PolyTermNodeSMAddrT ptList) {
         tempExp = ptList->ptPtr->exp;
         
         if (nodePosFlag == 0 && (tempFrac->num) < 0) {
-            printf("\n-%d/%dx^%d", -(tempFrac->num), tempFrac->denom, tempExp);
+            printf("-%d/%dx^%d", -(tempFrac->num), tempFrac->denom, tempExp);
             nodePosFlag++;
         }
         else if (nodePosFlag == 0 && (tempFrac->num) > 0) {
-            printf("\n%d/%dx^%d ", tempFrac->num, tempFrac->denom, tempExp);
+            printf("%d/%dx^%d ", tempFrac->num, tempFrac->denom, tempExp);
             nodePosFlag++;
         }
         else if (nodePosFlag > 0 && (tempFrac->num) < 0)
@@ -250,7 +246,6 @@ void printListStephenM(PolyTermNodeSMAddrT ptList) {
         
         ptList = ptList->next;
     }
-    printf("\n");
 }
 
 void freeListStephenM(PolyTermNodeSMAddrT* list) {

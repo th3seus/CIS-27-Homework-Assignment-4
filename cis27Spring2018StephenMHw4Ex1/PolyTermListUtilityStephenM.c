@@ -105,7 +105,6 @@ void runCreateListsMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                 printf("\nHow many terms in the left operand? ");
                 scanf("%d", &allocCount);
                 
-                *leftOp = (PolyTermNodeSMPtrT)malloc(allocCount * sizeof(PolyTermNodeSMT));
                 
                 for (int i = 0; i < allocCount; i++) {
                     printf("\nCreating term #%d -- ", i + 1);
@@ -124,14 +123,11 @@ void runCreateListsMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                                         leftOp);
                 }
                 mergeSortedListStephenM(leftOp);
-                allocCount = 0;
                 break;
             case 2: // create right list
                 printf("\nHow many terms in the right operand? ");
                 scanf("%d", &allocCount);
-                
-                *rightOp = (PolyTermNodeSMPtrT)malloc(allocCount * sizeof(PolyTermNodeSMT));
-                
+
                 for (int i = 0; i < allocCount; i++) {
                     printf("\nCreating term #%d -- ", i + 1);
                     printf("\nEnter a numerator for the coefficient: ");
@@ -221,7 +217,7 @@ void runAdditionMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                     printf("and Right Operand is Empty.");
                 }
                 if (*rightOp) {
-                    printf(" and Right Operand is: ");
+                    printf("and Right Operand is: ");
                     printListStephenM(*rightOp);
                 }
                 if (*total) {
@@ -284,7 +280,7 @@ void runMultiplicationMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                     printf("and Right Operand is Empty.");
                 }
                 if (*rightOp) {
-                    printf(" and Right Operand is: ");
+                    printf("and Right Operand is: ");
                     printListStephenM(*rightOp);
                 }
                 if (*total) {
@@ -334,14 +330,14 @@ void runDisplayMenuStephenM(PolyTermNodeSMAddrT leftOp,
             case 2:
                 if (rightOp) {
                     printf("\nThe Right List is : ");
-                    printListStephenM(leftOp);
+                    printListStephenM(rightOp);
                 } else
                     printf("\nThe Right List is Empty.");
                 break;
             case 3:
                 if (total) {
                     printf("\nThe Total List is : ");
-                    printListStephenM(leftOp);
+                    printListStephenM(total);
                 } else
                     printf("\nThe Total List is Empty.");
                 break;
