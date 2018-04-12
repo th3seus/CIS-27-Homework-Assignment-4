@@ -1,10 +1,9 @@
-//
-//  PolyTermListUtilityStephenM.c
-//  cis27Spring2018StephenMHw4Ex1
-//
-//  Created by Stephen on 3/21/18.
-//  Copyright © 2018 Stephen. All rights reserved.
-//
+/**
+ * Program Name: cis27Spring2018StephenMHw4Ex1.c
+ * Discussion:   Polynomial Calculator
+ * Written by:   Stephen Miller
+ * Submitted:    2018/04/12
+ */
 
 #include "FractionStephenM.h"
 #include "PolyTermListStephenM.h"
