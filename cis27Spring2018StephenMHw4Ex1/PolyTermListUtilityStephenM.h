@@ -25,21 +25,22 @@ void runDisplayMenuStephenM(PolyTermNodeSMAddrT /* leftOp */,
                             PolyTermNodeSMAddrT /* totalOp */);
 void displayDisplayMenuOptionsStephenM(void);
 
-void runCreateListsMenuStephenM(PolyTermNodeSMAddrT* /* address of rightOp */,
-                               PolyTermNodeSMAddrT* /* address of leftOp */,
-                               PolyTermNodeSMAddrT* /* address of totalOp */);
+void runCreateListsMenuStephenM(PolyTermNodeSMAddrT* /* address of leftOp */,
+                               PolyTermNodeSMAddrT* /* address of rightOp */);
 void displayCreateMenuOptionsStephenM(void);
 
-void runAdditionMenuStephenM(PolyTermNodeSMAddrT* /* address of rightOp */,
-                            PolyTermNodeSMAddrT* /* address of leftOp */,
+void runAdditionMenuStephenM(PolyTermNodeSMAddrT* /* address of leftOp */,
+                            PolyTermNodeSMAddrT* /* address of rightOp */,
                             PolyTermNodeSMAddrT* /* address of totalOp */);
 void displayAddMenuOptionsStephenM(void);
 
-void runMultiplicationMenuStephenM(PolyTermNodeSMAddrT* /* address of rightOp */,
-                                  PolyTermNodeSMAddrT* /* address of leftOp */,
+void runMultiplicationMenuStephenM(PolyTermNodeSMAddrT* /* address of leftOp */,
+                                  PolyTermNodeSMAddrT* /* address of rightOp */,
                                   PolyTermNodeSMAddrT* /* address of totalOp */);
 void displayMultiMenuOptionsStephenM(void);
 
-
-
+void runClearingMenuStephenM(PolyTermNodeSMAddrT* /* address of leftOp */,
+                             PolyTermNodeSMAddrT* /* address of rightOp */,
+                             PolyTermNodeSMAddrT* /* address of totalOp */);
+void displayClearingMenuOptionsStephenM(void);
 #endif /* PolyTermListUtilityStephenM_h */

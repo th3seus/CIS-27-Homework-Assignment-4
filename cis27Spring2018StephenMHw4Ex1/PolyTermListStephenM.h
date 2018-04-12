@@ -49,7 +49,7 @@ void mergeSortedListStephenM(PolyTermNodeSMAddrT*);
 void bisectListsStephenM(PolyTermNodeSMPtrT, PolyTermNodeSMAddrT*, PolyTermNodeSMAddrT*);
 PolyTermNodeSMPtrT mergeSortStephenM(PolyTermNodeSMAddrT* left,PolyTermNodeSMAddrT* right);
 void combineLikeTermsStephenM(PolyTermNodeSMAddrT*);
-void freeListStephen(PolyTermNodeSMAddrT*);
+void freeListStephenM(PolyTermNodeSMAddrT*);
 int getLengthStephenM(PolyTermNodeSMAddrT);
 int isEmptyStephenM(PolyTermNodeSMAddrT);
 

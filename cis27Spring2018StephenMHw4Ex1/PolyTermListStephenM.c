@@ -48,10 +48,24 @@ void createPolyTermNodeStephenM(PolyTermSMAddrT newNode, PolyTermNodeSMAddrT* pt
 void addListsStephenM(PolyTermNodeSMPtrT leftOp,
                       PolyTermNodeSMPtrT rightOp,
                       PolyTermNodeSMAddrT* total) {
-
-    appendNodeStephenM(leftOp, total);
+    FractionSMPtrT tempFrac = NULL;
+    int tempExp = 0;
     
-    appendNodeStephenM(rightOp, total);
+    while (leftOp) {
+        tempFrac = leftOp->ptPtr->coefPtr;
+        tempExp = leftOp->ptPtr->exp;
+        
+        createPolyTermNodeStephenM(createPolyTermStephen(tempExp, tempFrac), total);
+        leftOp = leftOp->next;
+    }
+    
+    while (rightOp) {
+        tempFrac = rightOp->ptPtr->coefPtr;
+        tempExp = rightOp->ptPtr->exp;
+        
+        createPolyTermNodeStephenM(createPolyTermStephen(tempExp, tempFrac), total);
+        rightOp = rightOp->next;
+    }
 
     mergeSortedListStephenM(total);
     combineLikeTermsStephenM(total);
@@ -238,3 +252,46 @@ void printListStephenM(PolyTermNodeSMAddrT ptList) {
     }
     printf("\n");
 }
+
+void freeListStephenM(PolyTermNodeSMAddrT* list) {
+    PolyTermNodeSMPtrT temp = NULL;
+    PolyTermNodeSMPtrT next = NULL;
+    
+    temp = *list;
+    
+    while (temp) {
+        next = temp->next;
+        
+        free(temp->ptPtr->coefPtr);
+        temp->ptPtr->coefPtr = NULL;
+        free(temp->ptPtr);
+        temp->ptPtr = NULL;
+        free(temp);
+        
+        temp = next;
+    }
+    
+    *list = NULL;
+}
+
+int getLengthStephenM(PolyTermNodeSMAddrT list) {
+    int count = 0;
+    
+    while (list) {
+        count++;
+        list = list->next;
+    }
+    
+    return count;
+}
+
+int isEmptyStephenM(PolyTermNodeSMAddrT list) {
+    int flag = 0;
+    
+    if (list == NULL)
+        return flag;
+    else
+        flag = 1;
+    return flag;
+}
+

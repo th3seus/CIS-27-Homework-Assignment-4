@@ -44,4 +44,3 @@ FractionSMPtrT multiplyFractions(FractionSMAddrT leftOp, FractionSMAddrT rightOp
                             (leftOp->denom) * (rightOp->denom));
     
 }
-
