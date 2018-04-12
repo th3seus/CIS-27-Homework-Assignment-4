@@ -41,7 +41,8 @@ void runMainMenuStephenM(void) {
                 break;
             case 2: // adding lists
                 if (leftOp == NULL || rightOp == NULL)
-                    printf("\nBoth left and right operands must be initialized -- Please do so");
+                    printf("\nBoth left and right operands "
+                           "must be initialized -- Please do so");
                 else if (total != NULL) {
                     freeListStephenM(&total);
                     runAdditionMenuStephenM(&leftOp, &rightOp, &total);
@@ -50,7 +51,8 @@ void runMainMenuStephenM(void) {
                 break;
             case 3: // multiplying lists
                 if (leftOp == NULL || rightOp == NULL)
-                    printf("\nBoth left and right operands must be initialized -- Please do so");
+                    printf("\nBoth left and right operands "
+                           "must be initialized -- Please do so");
                 else if (total != NULL) {
                     freeListStephenM(&total);
                     runMultiplicationMenuStephenM(&leftOp, &rightOp, &total);
@@ -64,6 +66,14 @@ void runMainMenuStephenM(void) {
                 runClearingMenuStephenM(&leftOp, &rightOp, &total);
                 break;
             case 6: // quitting
+                printf("\nHaving fun with polynomials!");
+                
+                freeListStephenM(&leftOp);
+                leftOp = NULL;
+                freeListStephenM(&rightOp);
+                rightOp = NULL;
+                freeListStephenM(&total);
+                total = NULL;
                 break;
             default: // wrong option
                 printf("\nYou're joking...");
@@ -96,25 +106,25 @@ void runCreateListsMenuStephenM(PolyTermNodeSMAddrT* leftOp,
     
     do {
         displayCreateMenuOptionsStephenM();
-        printf("\nEnter an option: ");
+        printf("\n  Enter an option: ");
         scanf("%d", &menuOption);
         
         switch (menuOption) {
             case 1: // create left list
-                printf("\nHow many terms in the left operand? ");
+                printf("\n  How many terms in the left operand? ");
                 scanf("%d", &allocCount);
                 
                 
                 for (int i = 0; i < allocCount; i++) {
-                    printf("\nCreating term #%d -- ", i + 1);
-                    printf("\nEnter a numerator for the coefficient: ");
+                    printf("\n  Creating term #%d -- ", i + 1);
+                    printf("\n  Enter a numerator for the coefficient: ");
                     scanf("%d", &num);
                     do {
-                        printf("\nEnter a non-zero denominator for the coefficient: ");
+                        printf("\n  Enter a non-zero denominator for the coefficient: ");
                         scanf("%d", &denom);
                     } while (denom == 0);
                     
-                    printf("\nEnter an exponent: ");
+                    printf("\n  Enter an exponent: ");
                     scanf("%d", &exp);
                     
                     createPolyTermNodeStephenM(createPolyTermStephen(exp,
@@ -124,19 +134,19 @@ void runCreateListsMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                 mergeSortedListStephenM(leftOp);
                 break;
             case 2: // create right list
-                printf("\nHow many terms in the right operand? ");
+                printf("\n  How many terms in the right operand? ");
                 scanf("%d", &allocCount);
 
                 for (int i = 0; i < allocCount; i++) {
-                    printf("\nCreating term #%d -- ", i + 1);
-                    printf("\nEnter a numerator for the coefficient: ");
+                    printf("\n  Creating term #%d -- ", i + 1);
+                    printf("\n  Enter a numerator for the coefficient: ");
                     scanf("%d", &num);
                     do {
-                        printf("\nEnter a non-zero denominator for the coefficient: ");
+                        printf("\n  Enter a non-zero denominator for the coefficient: ");
                         scanf("%d", &denom);
                     } while (denom == 0);
                     
-                    printf("\nEnter an exponent: ");
+                    printf("\n  Enter an exponent: ");
                     scanf("%d", &exp);
                     
                     createPolyTermNodeStephenM(createPolyTermStephen(exp,
@@ -148,38 +158,38 @@ void runCreateListsMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                 break;
             case 3: // display lists
                 if (*leftOp == NULL) {
-                    printf("\nLeft Operand is Empty, ");
+                    printf("\n  Left Operand is Empty, ");
                 }
                 if (*leftOp) {
-                    printf("\nLeft Operand is: ");
+                    printf("\n  Left Operand is: ");
                     printListStephenM(*leftOp);
                 }
                 if (*rightOp == NULL) {
                     printf("and Right Operand is Empty.");
                 }
                 if (*rightOp) {
-                    printf(" and Right Operand is: ");
+                    printf("and Right Operand is: ");
                     printListStephenM(*rightOp);
                 }
                 break;
             case 4: // quit
-                printf("\nReturning to Main Menu");
+                printf("\n  Returning to Main Menu");
                 break;
             default: // wrong option
-                printf("\nReally?");
+                printf("\n  Really?");
                 break;
         }
     } while (menuOption != 4);
 }
 void displayCreateMenuOptionsStephenM() {
-    printf("\n*******************************"
-           "\n*        Creation Menu        *"
-           "\n*                             *"
-           "\n* 1. Create Left Polynomial   *"
-           "\n* 2. Create Right Polynomial  *"
-           "\n* 3. Display Lists            *"
-           "\n* 4. Quit                     *"
-           "\n*******************************");
+    printf("\n  *******************************"
+           "\n  *        Creation Menu        *"
+           "\n  *                             *"
+           "\n  * 1. Create Left Polynomial   *"
+           "\n  * 2. Create Right Polynomial  *"
+           "\n  * 3. Display Lists            *"
+           "\n  * 4. Quit                     *"
+           "\n  *******************************");
 }
 
 void runAdditionMenuStephenM(PolyTermNodeSMAddrT* leftOp,
@@ -188,12 +198,12 @@ void runAdditionMenuStephenM(PolyTermNodeSMAddrT* leftOp,
     int menuOption = 0;
     do {
         displayAddMenuOptionsStephenM();
-        printf("\nEnter an option: ");
+        printf("\n  Enter an option: ");
         scanf("%d", &menuOption);
         
         switch(menuOption){
             case 1:
-                printf("\nPerforming the following operation:\n(");
+                printf("\n  Performing the following operation:\n(");
                 printListStephenM(*leftOp);
                 printf(") + (");
                 printListStephenM(*rightOp);
@@ -201,15 +211,15 @@ void runAdditionMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                 
                 addListsStephenM(*leftOp, *rightOp, total);
                 
-                printf("\nAfter the function call the sum is: ");
+                printf("\n  After the function call the sum is: ");
                 printListStephenM(*total);
                 break;
             case 2:
                 if (*leftOp == NULL) {
-                    printf("\nLeft Operand is Empty, ");
+                    printf("\n  Left Operand is Empty, ");
                 }
                 if (*leftOp) {
-                    printf("\nLeft Operand is: ");
+                    printf("\n  Left Operand is: ");
                     printListStephenM(*leftOp);
                 }
                 if (*rightOp == NULL) {
@@ -220,28 +230,28 @@ void runAdditionMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                     printListStephenM(*rightOp);
                 }
                 if (*total) {
-                    printf("\nThe sum is: ");
+                    printf("\n  The sum is: ");
                     printListStephenM(*total);
                 }
                 break;
             case 3:
-                printf("\nReturning to Main Menu");
+                printf("\n  Returning to Main Menu");
                 break;
             default:
-                printf("\nSurely this is a joke");
+                printf("\n  Surely this is a joke");
                 break;
         }
     } while (menuOption != 3);
 }
 
 void displayAddMenuOptionsStephenM() {
-    printf("\n*******************************"
-           "\n*        Addition Menu        *"
-           "\n*                             *"
-           "\n* 1. Add Lists                *"
-           "\n* 2. Display Lists            *"
-           "\n* 3. Quit                     *"
-           "\n*******************************");
+    printf("\n  *******************************"
+           "\n  *        Addition Menu        *"
+           "\n  *                             *"
+           "\n  * 1. Add Lists                *"
+           "\n  * 2. Display Lists            *"
+           "\n  * 3. Quit                     *"
+           "\n  *******************************");
 }
 
 void runMultiplicationMenuStephenM(PolyTermNodeSMAddrT* leftOp,
@@ -251,12 +261,12 @@ void runMultiplicationMenuStephenM(PolyTermNodeSMAddrT* leftOp,
     
     do {
         displayMultiMenuOptionsStephenM();
-        printf("\nEnter an option: ");
+        printf("\n  Enter an option: ");
         scanf("%d", &menuOption);
         
         switch(menuOption) {
             case 1:
-                printf("\nPerforming the following operation:\n(");
+                printf("\n  Performing the following operation:\n(");
                 printListStephenM(*leftOp);
                 printf(") * (");
                 printListStephenM(*rightOp);
@@ -264,15 +274,15 @@ void runMultiplicationMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                 
                 multiplyListsStephenM(*leftOp, *rightOp, total);
                 
-                printf("\nAfter the function call the product is: ");
+                printf("\n  After the function call the product is: ");
                 printListStephenM(*total);
                 break;
             case 2:
                 if (*leftOp == NULL) {
-                    printf("\nLeft Operand is Empty, ");
+                    printf("\n  Left Operand is Empty, ");
                 }
                 if (*leftOp) {
-                    printf("\nLeft Operand is: ");
+                    printf("\n  Left Operand is: ");
                     printListStephenM(*leftOp);
                 }
                 if (*rightOp == NULL) {
@@ -283,15 +293,15 @@ void runMultiplicationMenuStephenM(PolyTermNodeSMAddrT* leftOp,
                     printListStephenM(*rightOp);
                 }
                 if (*total) {
-                    printf("\nThe product is: ");
+                    printf("\n  The product is: ");
                     printListStephenM(*total);
                 }
                 break;
             case 3:
-                printf("\nReturning to Main Menu");
+                printf("\n  Returning to Main Menu");
                 break;
             default:
-                printf("\nTry again...");
+                printf("\n  Try again...");
                 break;
         }
         
@@ -299,13 +309,13 @@ void runMultiplicationMenuStephenM(PolyTermNodeSMAddrT* leftOp,
 }
 
 void displayMultiMenuOptionsStephenM() {
-    printf("\n*******************************"
-           "\n*     Multiplication Menu     *"
-           "\n*                             *"
-           "\n* 1. Multiply Lists           *"
-           "\n* 2. Display Lists            *"
-           "\n* 3. Quit                     *"
-           "\n*******************************");
+    printf("\n  *******************************"
+           "\n  *     Multiplication Menu     *"
+           "\n  *                             *"
+           "\n  * 1. Multiply Lists           *"
+           "\n  * 2. Display Lists            *"
+           "\n  * 3. Quit                     *"
+           "\n  *******************************");
 }
 
 void runDisplayMenuStephenM(PolyTermNodeSMAddrT leftOp,
@@ -315,50 +325,50 @@ void runDisplayMenuStephenM(PolyTermNodeSMAddrT leftOp,
     
     do {
         displayDisplayMenuOptionsStephenM();
-        printf("\nEnter an option: ");
+        printf("\n  Enter an option: ");
         scanf("%d", &menuOption);
         
         switch (menuOption) {
             case 1:
                 if (leftOp) {
-                    printf("\nThe Left List is : ");
+                    printf("\n  The Left List is : ");
                     printListStephenM(leftOp);
                 } else
-                    printf("\nThe Left List is Empty.");
+                    printf("\n  The Left List is Empty.");
                 break;
             case 2:
                 if (rightOp) {
-                    printf("\nThe Right List is : ");
+                    printf("\n  The Right List is : ");
                     printListStephenM(rightOp);
                 } else
-                    printf("\nThe Right List is Empty.");
+                    printf("\n  The Right List is Empty.");
                 break;
             case 3:
                 if (total) {
-                    printf("\nThe Total List is : ");
+                    printf("\n  The Total List is : ");
                     printListStephenM(total);
                 } else
-                    printf("\nThe Total List is Empty.");
+                    printf("\n  The Total List is Empty.");
                 break;
             case 4:
-                printf("\nReturning to Main Menu");
+                printf("\n  Returning to Main Menu");
                 break;
             default:
-                printf("\nHmmm");
+                printf("\n  Hmmm...");
                 break;
         }
     } while (menuOption != 4);
 }
 
 void displayDisplayMenuOptionsStephenM() {
-    printf("\n*******************************"
-           "\n*         Dislpay Menu        *"
-           "\n*                             *"
-           "\n* 1. Display Left List        *"
-           "\n* 2. Display Right List       *"
-           "\n* 3. Display Total List       *"
-           "\n* 4. Quit                     *"
-           "\n*******************************");
+    printf("\n  *******************************"
+           "\n  *         Dislpay Menu        *"
+           "\n  *                             *"
+           "\n  * 1. Display Left List        *"
+           "\n  * 2. Display Right List       *"
+           "\n  * 3. Display Total List       *"
+           "\n  * 4. Quit                     *"
+           "\n  *******************************");
 }
 
 void runClearingMenuStephenM(PolyTermNodeSMAddrT* leftOp,
@@ -368,50 +378,50 @@ void runClearingMenuStephenM(PolyTermNodeSMAddrT* leftOp,
     
     do {
         displayClearingMenuOptionsStephenM();
-        printf("\nEnter an option: ");
+        printf("\n  Enter an option: ");
         scanf("%d", &menuOption);
         
         switch (menuOption) {
             case 1: // left
                 if (*leftOp) {
-                    printf("\nClearing Left Operand...");
+                    printf("\n  Clearing Left Operand...");
                     freeListStephenM(leftOp);
                 } else {
-                    printf("\nThe list is already empty...");
+                    printf("\n  The list is already empty...");
                 }
                 break;
             case 2: // right
                 if (*rightOp) {
-                    printf("\nClearing Right Operand...");
+                    printf("\n  Clearing Right Operand...");
                     freeListStephenM(rightOp);
                 } else {
-                    printf("\nThe list is already empty...");
+                    printf("\n  The list is already empty...");
                 }
                 break;
             case 3: // total
                 if (*total) {
-                    printf("\nClearing Total List...");
+                    printf("\n  Clearing Total List...");
                     freeListStephenM(total);
                 } else {
-                    printf("\nThe list is already empty...");
+                    printf("\n  The list is already empty...");
                 }
                 break;
             case 4: // quit
-                printf("\nReturning to Main Menu");
+                printf("\n  Returning to Main Menu");
                 break;
             default:
-                printf("\nTry that again...");
+                printf("\n  Try that again...");
                 break;
         }
     } while (menuOption != 4);
 }
 void displayClearingMenuOptionsStephenM() {
-    printf("\n*******************************"
-           "\n*        Clearing Menu        *"
-           "\n*                             *"
-           "\n* 1. Clear Left List          *"
-           "\n* 2. Clear Right List         *"
-           "\n* 3. Clear Total List         *"
-           "\n* 4. Quit                     *"
-           "\n*******************************");
+    printf("\n  *******************************"
+           "\n  *        Clearing Menu        *"
+           "\n  *                             *"
+           "\n  * 1. Clear Left List          *"
+           "\n  * 2. Clear Right List         *"
+           "\n  * 3. Clear Total List         *"
+           "\n  * 4. Quit                     *"
+           "\n  *******************************");
 }

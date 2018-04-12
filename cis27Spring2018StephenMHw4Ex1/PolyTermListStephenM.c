@@ -22,7 +22,8 @@ PolyTermSMPtrT createPolyTermStephen(int exp, FractionSMPtrT coef) {
     return tempTerm;
 }
 
-void createPolyTermNodeStephenM(PolyTermSMAddrT newNode, PolyTermNodeSMAddrT* ptList) {
+void createPolyTermNodeStephenM(PolyTermSMAddrT newNode,
+                                PolyTermNodeSMAddrT* ptList) {
     // should prepend during node creation
     PolyTermNodeSMPtrT tempNode = NULL;
     
@@ -85,7 +86,8 @@ void multiplyListsStephenM(PolyTermNodeSMPtrT leftOp,
     
     while (leftOp) {
         while (rightOp) {
-            tempFrac = multiplyFractions(leftOp->ptPtr->coefPtr, rightOp->ptPtr->coefPtr);
+            tempFrac = multiplyFractions(leftOp->ptPtr->coefPtr,
+                                    rightOp->ptPtr->coefPtr);
             tempExp = leftOp->ptPtr->exp + rightOp->ptPtr->exp;
             
             createPolyTermNodeStephenM(createPolyTermStephen(tempExp, tempFrac), total);
@@ -103,6 +105,8 @@ void multiplyListsStephenM(PolyTermNodeSMPtrT leftOp,
 void combineLikeTermsStephenM(PolyTermNodeSMAddrT* listAddr) {
     PolyTermNodeSMPtrT temp = NULL;
     PolyTermNodeSMPtrT current = NULL;
+    FractionSMPtrT tempLFrac = NULL;
+    FractionSMPtrT tempRFrac = NULL;
     
     if (*listAddr == NULL || (*listAddr)->next == NULL) {
         return;
@@ -112,8 +116,14 @@ void combineLikeTermsStephenM(PolyTermNodeSMAddrT* listAddr) {
     
     while (current && current->next) {
         if (current->ptPtr->exp == current->next->ptPtr->exp) {
-            current->ptPtr->coefPtr = addFractions(current->ptPtr->coefPtr,
-                                              current->next->ptPtr->coefPtr);
+            tempLFrac = current->ptPtr->coefPtr;
+            tempRFrac = current->next->ptPtr->coefPtr;
+            
+            free(current->ptPtr->coefPtr);
+            current->ptPtr->coefPtr = NULL;
+            
+            current->ptPtr->coefPtr = addFractions(tempLFrac, tempRFrac);
+            
             temp = current->next;
             current->next = current->next->next;
             temp->next = NULL;
@@ -166,7 +176,8 @@ void mergeSortedListStephenM(PolyTermNodeSMAddrT* ptListAddr) {
     *ptListAddr = mergeSortStephenM(&left, &right);
 }
 
-PolyTermNodeSMPtrT mergeSortStephenM(PolyTermNodeSMAddrT* left,PolyTermNodeSMAddrT* right) {
+PolyTermNodeSMPtrT mergeSortStephenM(PolyTermNodeSMAddrT* left,
+                                    PolyTermNodeSMAddrT* right) {
     /* Secondary Merge Sort Function
      Recursively sorts list halves and merges them */
     PolyTermNodeSMPtrT result = NULL;

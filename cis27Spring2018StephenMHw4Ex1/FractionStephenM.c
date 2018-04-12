@@ -21,7 +21,7 @@ FractionSMAddrT createFractionStephenM(int num, int denom) {
     tempFrac->num = num / getGCD(num, denom);
     tempFrac->denom = denom / getGCD(num, denom);
     
-    if (denom < 0) {
+    if (tempFrac->denom < 0) {
         tempFrac->num = -tempFrac->num;
         tempFrac->denom = -tempFrac->denom;
     }
